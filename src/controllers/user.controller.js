@@ -62,14 +62,14 @@ export const newUser = async (req, res, next) => {
 };
 
 
-export const loginId = async (req, res, next) => {
-  const { email } = req.body
+export const login = async (req, res, next) => {
+  //const { email } = req.body
   try {
-    const data = await UserService.loginId(email);
+    const data = await UserService.login(req.body);
     res.status(HttpStatus.CREATED).json({
       code: HttpStatus.CREATED,
       data: data,
-      //message: 'User created successfully'
+      message: 'Login successfully'
     });
   } catch (error) {
     next(error);

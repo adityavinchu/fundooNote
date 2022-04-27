@@ -1,5 +1,5 @@
 import User from '../models/user.model';
-
+import bcrypt from 'bcrypt';
 //get all users
 export const getAllUsers = async () => {
   const data = await User.find();
@@ -7,18 +7,29 @@ export const getAllUsers = async () => {
 };
 
 
-export const loginId = async (email) => {
-  const data = await User.findOne({email:email});
+
+export const login = async (body) => {
+  const data = await User.findOne({ email: body.email });
   console.log("email",data)
-  if(data!=null){
-    return "Email is present"
+  if (data == null) {
+    throw new Error("User NOT exist");
   } else {
-    return "Email is absent"    
+    const result = await bcrypt.compare(body.password,data.password);
+    if (result) {
+      return data;
+    }
+    else {
+      throw new Error("incorrect Password");
+    }
   }
 };
 
 //create new user
 export const newUser = async (body) => {
+  const saltRounds = 10;
+  const salt = await bcrypt.genSalt(saltRounds);
+  const hashPassword = await bcrypt.hash(body.password, salt);
+  body.password = hashPassword;
   const data = await User.create(body);
   return data;
 };
