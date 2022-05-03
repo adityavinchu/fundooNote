@@ -27,6 +27,7 @@ export const newNote = async (req, res, next) => {
   //getAllNotes
   export const getAllNotes = async (req, res, next) => {
     try {
+      console.log("user data at controller:",req.body);
       const data = await noteService.getAllNotes(req.body);
       res.status(HttpStatus.ACCEPTED).json({
         code: HttpStatus.ACCEPTED,
@@ -81,3 +82,32 @@ export const newNote = async (req, res, next) => {
     }
   }
   
+    // archivedNote
+    export const archivedNote = async (req, res, next) => {
+      console.log(req.body);
+      try {
+        const data = await noteService.isArchivedNote(req.params._id, req.body.isArchived);
+        res.status(HttpStatus.ACCEPTED).json({
+          code: HttpStatus.ACCEPTED,
+          data: data,
+          message: 'Archived'
+        });
+      } catch (error) {
+        next(error);
+      }
+    }
+
+
+      //trash note
+  export const isDeleted=async(req,res,next)=>{
+    try {
+      const data = await noteService.isDeleted(req.params._id,req.body.isDeleted);
+      res.status(HttpStatus.OK).json({
+        code: HttpStatus.OK,
+        data: [],
+        message: 'Note deleted!!'
+      });
+    } catch (error) {
+      next(error);
+    }
+  }

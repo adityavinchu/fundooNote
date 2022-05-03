@@ -5,8 +5,8 @@ export const newNote=async (body)=>{
     return data;
 }
 
-export const getAllNotes=async()=>{
-    const data= await Note.find();
+export const getAllNotes=async(userid)=>{
+    const data= await Note.find(userid);
     if(data==null){
         throw new Error("No any note for this user");
     }
@@ -40,4 +40,28 @@ export const updateNote=async(_id,body)=>{
 export const DeleteNote=async(_id)=>{
    await Note.findByIdAndDelete(_id);
    return '';   
+}
+
+export const isArchivedNote=async(_id,isArchived)=>{
+    console.log("id: ",_id);
+    console.log(isArchived);
+    const data=await Note.findByIdAndUpdate(
+        
+      _id,
+      {isArchived:isArchived}
+
+    );
+    return data;
+}
+
+export const isDeleted=async(_id,isDeleted)=>{
+    console.log("id: ",_id);
+    console.log(isDeleted);
+    const data=await Note.findByIdAndUpdate(
+        
+      _id,
+      {isDeleted}
+
+    );
+    return data;
 }
