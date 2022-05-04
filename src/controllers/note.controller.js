@@ -74,7 +74,6 @@ export const newNote = async (req, res, next) => {
       const data = await noteService.DeleteNote(req.params._id);
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
-        data: [],
         message: 'Note deleted successfully!!'
       });
     } catch (error) {
@@ -105,7 +104,7 @@ export const newNote = async (req, res, next) => {
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
         data: [],
-        message: 'Note deleted!!'
+        message: 'Note is in trash!!'
       });
     } catch (error) {
       next(error);
