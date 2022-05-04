@@ -103,7 +103,7 @@ export const newNote = async (req, res, next) => {
       const data = await noteService.isDeleted(req.params._id,req.body.isDeleted);
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
-        data: [],
+        
         message: 'Note is in trash!!'
       });
     } catch (error) {

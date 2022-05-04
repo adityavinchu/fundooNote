@@ -40,7 +40,7 @@ export const DeleteNote = async (userid) => {
 
 export const isArchivedNote = async (_id) => {
     console.log("id: ", _id);
-    console.log(isArchived);
+    //console.log(isArchived);
     const data = await Note.findByIdAndUpdate(
 
         _id,
