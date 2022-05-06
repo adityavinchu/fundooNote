@@ -1,7 +1,7 @@
 import User from '../models/user.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
+import {sendingEmail} from '../utils/helper'
 
 export const login = async (body) => {
   const data = await User.findOne({ email: body.email });
@@ -29,3 +29,16 @@ export const newUser = async (body) => {
   const data = await User.create(body);
   return data;
 };
+
+
+export const forgetPassword=async(body)=>{
+  const searchData=await User.findOne({email:body.email});
+  if(body.email==searchData.email){
+    const token=jwt.sign({"email":searchData.email,"id":searchData._id},process.env.SECRETKEY)
+    const result=await sendingEmail(searchData.email,token)
+    return result;
+  }
+  else{
+    throw new Error("Email NOT match ");
+  }
+}
