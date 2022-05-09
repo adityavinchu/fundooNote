@@ -1,6 +1,6 @@
 import express from 'express';
 import * as userController from '../controllers/user.controller';
-import { userAuth } from '../middlewares/auth.middleware';
+import { userAuth,ResetAuth } from '../middlewares/auth.middleware';
 
 //import { newUserValidator } from '../validators/user.validator';
 
@@ -16,7 +16,7 @@ router.post('/registration', userController.newUser);
 router.post('/forgetpassword', userController.forgetPassword);
 
 //reset password
-//router.post('/reset',userAuth, userController.resetPassword);
+router.post('/reset',ResetAuth, userController.resetPassword);
 
 
 export default router;
