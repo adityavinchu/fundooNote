@@ -278,97 +278,97 @@
                     }
                 ]
             }
-        },
-        "securityDefinitions": {
-            "JWT": {
-                "type": "apiKey",
-                "name": "Authorization",
-                "in": "header"
+        }
+    },
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
             }
         },
-        "definitions": {
-            "User": {
-                "type": "object",
-                "properties": {
-                    "firstname": {
-                        "type": "string"
-                    },
-                    "lastname": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    }
+        "login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
                 }
-            },
-            "login": {
-                "type": "object",
-                "properties": {
-                    "email": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    }
+            }
+        },
+        "forgetpassword": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
                 }
-            },
-            "forgetpassword": {
-                "type": "object",
-                "properties": {
-                    "email": {
-                        "type": "string"
-                    }
+            }
+        },
+        "resetpassword": {
+            "type": "object",
+            "properties": {
+                "newpassword": {
+                    "type": "string"
                 }
-            },
-            "resetpassword": {
-                "type": "object",
-                "properties": {
-                    "newpassword": {
-                        "type": "string"
-                    }
+            }
+        },
+        "newnote": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "isArchieve": {
+                    "type": "boolean"
+                },
+                "isTrash": {
+                    "type": "boolean"
                 }
-            },
-            "newnote": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "color": {
-                        "type": "string"
-                    },
-                    "isArchieve": {
-                        "type": "boolean"
-                    },
-                    "isTrash": {
-                        "type": "boolean"
-                    }
-                }
-            },
-            "updatenote": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "color": {
-                        "type": "string"
-                    },
-                    "isArchieve": {
-                        "type": "boolean"
-                    },
-                    "isTrash": {
-                        "type": "boolean"
-                    }
+            }
+        },
+        "updatenote": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "isArchieve": {
+                    "type": "boolean"
+                },
+                "isTrash": {
+                    "type": "boolean"
                 }
             }
         }
