@@ -1,7 +1,7 @@
 import express from 'express';
 import * as userController from '../controllers/user.controller';
 import { userAuth,ResetAuth } from '../middlewares/auth.middleware';
-
+import { newUserValidator } from '../validators/user.validator';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/login', userController.login);
 
 //route to create a new user
-router.post('/registration', userController.newUser);
+router.post('/registration',userController.newUser);
 
 //route for forget password
 router.post('/forgetpassword', userController.forgetPassword);
