@@ -1,7 +1,6 @@
 import express from 'express';
 import * as userController from '../controllers/user.controller';
 import { userAuth,ResetAuth } from '../middlewares/auth.middleware';
-import { newUserValidator } from '../validators/user.validator';
 
 const router = express.Router();
 

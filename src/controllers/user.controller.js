@@ -59,8 +59,8 @@ export const forgetPassword = async (req, res, next) => {
   try {
     console.log("body:", req.body);
     const data = await UserService.forgetPassword(req.body);
-    res.status(HttpStatus.CREATED).json({
-      code: HttpStatus.CREATED,
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
       data: data,
       message: 'success'
     });

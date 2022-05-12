@@ -5,7 +5,7 @@ import HttpStatus from 'http-status-codes';
 import app from '../../src/index';
 
 let loginToken;
-
+let noteId="627cd119426f1ee938da8bbf";
 describe('User APIs Test', () => {
   before((done) => {
     const clearCollections = () => {
@@ -93,8 +93,24 @@ describe('User APIs Test', () => {
         });
     });
   });
+
+  describe('POST/forgetpassword', () => {
+    it('sends the reset password link', (done) => {
+      const userdetail={
+        email:"nolev77114@abincol.com"
+      };
+      request(app)
+        .post('/api/v1/users/forgetpassword')
+        .send(userdetail)
+        .end((err,res)=>{
+          expect(res.statusCode).to.be.equal(HttpStatus.OK);
+          done();
+        });
+    });
+  });
+
   describe('POST/notes', () => {
-    it('given new user when added note ', (done) => {
+    it('new note ', (done) => {
       const notedetail={
         title:"new note",
         description:"this is demo note"
@@ -105,6 +121,24 @@ describe('User APIs Test', () => {
         .set('Authorization', `${loginToken}`)
         .end((err,res)=>{
           expect(res.statusCode).to.be.equal(HttpStatus.CREATED);
+          done();
+        });
+    });
+  });
+  describe('PUT/notes', () => {
+    it('update note ', (done) => {
+      const notedetail={
+        title:"new note updated",
+        description:"this is updated note"
+      };
+      // noteId==res.body.data._id;
+      request(app)
+        .put(`/api/v1/notes/${noteId}`)
+        .send(notedetail)
+        .set('Authorization', `${loginToken}`)
+        .end((err,res)=>{
+          //console.log("response=",res);
+          expect(res.statusCode).to.be.equal(HttpStatus.ACCEPTED);
           done();
         });
     });
