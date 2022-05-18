@@ -1,5 +1,6 @@
 "use strict";
 
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 var _typeof = require("@babel/runtime/helpers/typeof");
@@ -10,6 +11,8 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
+
+import redis from './config/redis'
 
 var _express = _interopRequireDefault(require("express"));
 
@@ -47,6 +50,7 @@ app.use((0, _morgan["default"])('combined', {
   stream: _logger.logStream
 }));
 (0, _database["default"])();
+
 app.use("/api/".concat(api_version), (0, _routes["default"])());
 app.use(_error.appErrorHandler);
 app.use(_error.genericErrorHandler);

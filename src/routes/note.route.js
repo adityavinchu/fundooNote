@@ -1,7 +1,7 @@
 import express from 'express';
 import * as noteController from '../controllers/note.controller';
 import { userAuth } from '../middlewares/auth.middleware';
-
+import { checkGetAllNotes  } from '../middlewares/redis.middleware';
 
 const router = express.Router();
 
@@ -13,5 +13,7 @@ router.delete('/:_id',userAuth,noteController.DeleteNote);
 
 router.put('/isArchive/:_id',noteController.archivedNote);
 router.put('/istrash/:_id',noteController.isDeleted);
+
+router.get('', userAuth,checkGetAllNotes, noteController.getAllNotes);
 
 export default router;

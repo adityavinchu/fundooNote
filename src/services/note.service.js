@@ -1,9 +1,13 @@
 import { description } from '@hapi/joi/lib/base';
 import Note from '../models/note.model';
+import { client } from '../config/redis';
 
 export const newNote = async (body) => {
     const data = await Note.create(body);
+    if(data){
+        await client.del();
     return data;
+    }
 }
 
 export const getAllNotes = async (userid) => {
@@ -11,8 +15,10 @@ export const getAllNotes = async (userid) => {
     if (data == null) {
         throw new Error("No any note for this user");
     }
-    else
+    else{
+        await client.set('getAllNote',JSON.stringify(data));
         return data;
+    }
 }
 
 export const getNote = async (userid) => {
