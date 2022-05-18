@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { sendingEmail } from '../utils/helper'
 import { client } from '../config/redis';
-import { producer } from '../utils/RabbitMQ';
+//import { producer } from '../utils/RabbitMQ';
 
 export const login = async (body) => {
   const data = await User.findOne({ email: body.email });
